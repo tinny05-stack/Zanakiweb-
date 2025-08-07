@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Zanaki Secondary School - Excellence in Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fdff;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(135deg, #00CED1, #20B2AA);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #E0F7FA;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .section {
+            display: none;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #00CED1;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Home Section */
+        .hero {
+            background: linear-gradient(rgba(0,206,209,0.8), rgba(32,178,170,0.8)), url('/placeholder.svg?height=600&width=1200') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #00CED1;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #20B2AA;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,206,209,0.3);
+        }
+
+        .welcome-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .welcome-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,206,209,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .welcome-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .welcome-card h3 {
+            color: #00CED1;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,206,209,0.1);
+        }
+
+        .about-card h3 {
+            color: #00CED1;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .headteacher-message {
+            background: linear-gradient(135deg, #E0F7FA, #B2EBF2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 5px solid #00CED1;
+        }
+
+        /* Academics Section */
+        .academics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .subject-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,206,209,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,206,209,0.2);
+        }
+
+        .subject-card h4 {
+            color: #00CED1;
+            margin-bottom: 0.5rem;
+        }
+
+        .levels-section {
+            margin-top: 3rem;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #00CED1, #20B2AA);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Admission Section */
+        .admission-process {
+            margin-top: 2rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,206,209,0.1);
+            position: relative;
+        }
+
+        .step-number {
+            background: #00CED1;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .requirements {
+            background: #E0F7FA;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .requirements h3 {
+            color: #00CED1;
+            margin-bottom: 1rem;
+        }
+
+        .requirements ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .requirements li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #B2EBF2;
+        }
+
+        .requirements li:before {
+            content: "✓";
+            color: #00CED1;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Students Section */
+        .achievements {
+            margin-bottom: 3rem;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,206,209,0.1);
+            text-align: center;
+        }
+
+        .achievement-card h4 {
+            color: #00CED1;
+            margin-bottom: 1rem;
+        }
+
+        .clubs-section {
+            margin-bottom: 3rem;
+        }
+
+        .clubs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .club-card {
+            background: linear-gradient(135deg, #B2EBF2, #E0F7FA);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,206,209,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00CED1;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E0F7FA;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00CED1;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,206,209,0.1);
+        }
+
+        .contact-info h3 {
+            color: #00CED1;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item strong {
+            color: #00CED1;
+            margin-right: 10px;
+            min-width: 80px;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #00CED1, #20B2AA);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                background: rgba(0,206,209,0.95);
+                padding: 1rem;
+                border-radius: 5px;
+                margin-top: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-grid,
+            .academics-grid,
+            .process-steps,
+            .achievement-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .welcome-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .levels-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .clubs-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .welcome-card,
+            .about-card,
+            .subject-card,
+            .achievement-card {
+                padding: 1.5rem;
+            }
+
+            .contact-form,
+            .contact-info {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 1rem;
+            }
+
+            .clubs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery img {
+                height: 180px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Zanaki Secondary School</div>
+                <nav>
+                    <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+                    <ul id="nav-menu">
+                        <li><a href="#" onclick="showSection('home')" class="nav-link active">Home</a></li>
+                        <li><a href="#" onclick="showSection('about')" class="nav-link">About Us</a></li>
+                        <li><a href="#" onclick="showSection('academics')" class="nav-link">Academics</a></li>
+                        <li><a href="#" onclick="showSection('admission')" class="nav-link">Admission</a></li>
+                        <li><a href="#" onclick="showSection('students')" class="nav-link">Students</a></li>
+                        <li><a href="#" onclick="showSection('contact')" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="container">
+                    <h1>Welcome to Zanaki Secondary School</h1>
+                    <p>Education First</p>
+                    <a href="#" onclick="showSection('about')" class="btn">Learn More About Us</a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="welcome-content">
+                    <div class="welcome-card">
+                        <h3>Quality Education</h3>
+                        <p>We provide world-class education with modern teaching methods and experienced faculty members dedicated to student success.</p>
+                    </div>
+                    <div class="welcome-card">
+                        <h3>Holistic Development</h3>
+                        <p>Our curriculum focuses on academic excellence while nurturing creativity, leadership, and character development in every student.</p>
+                    </div>
+                    <div class="welcome-card">
+                        <h3>Modern Facilities</h3>
+                        <p>State-of-the-art classrooms, laboratories andlibrary provide the perfect environment for learning and growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Zanaki Secondary School</h2>
+                    <p class="section-subtitle">Discover our rich history and commitment to educational excellence</p>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>Our History</h3>
+                        <p>Zanaki Secondary School is one of the oldest schools in Tanzania. It was established in 1939 by His Highness Aga Khan, and later taken over by the government in the 1970s, when its name was changed to Zanaki Secondary School.The school currently has 1,150 female students from Form One to Form Six, with 59 Tanzanian teachers and 3 non-teaching staff members.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3>Our Mission</h3>
+                        <p>Using the official curriculum, we are committed to provide our students with challenging programmes, conducive learning environment and opportunities for both personal and intellectual development so as to prepare them for concrete career studies and help them become independent lifelong learners.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3>Our Vision</h3>
+                        <p>To offer our students the opportunity to transform their visions into reality.</p>
+                        <p>To increase the percentage of those who pass in Division I and Il by 70% and reduce the failure rate to less than 1% for O-level and 0% for A-level by year 2013.</p>
+                        <p>To maintain our achievements in the other areas of School life.</p>
+                    </div>
+                </div>
+
+                <div class="headteacher-message">
+                    <h3>Message from the Headteacher</h3>
+                    <p><em>"Welcome to Zanaki Secondary School, where education meets excellence. As the headteacher, I am proud to lead an institution that has consistently delivered outstanding results while maintaining a warm, supportive environment for all our students.</em></p>
+                    <p><em>Our dedicated team of educators works tirelessly to ensure that every child receives personalized attention and the opportunity to discover their unique talents and abilities. We believe that education is not just about academic achievement, but about developing confident, compassionate, and capable individuals.</em></p>
+                    <p><em>I invite you to join our school community and experience the difference that quality education can make in your child's life."</em></p>
+                    <p><strong>- Dr. Sarah Johnson, Headteacher</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academics Section -->
+        <section id="academics" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Academic Excellence</h2>
+                    <p class="section-subtitle">Comprehensive curriculum designed for holistic development</p>
+                </div>
+
+                <div class="levels-section">
+                    <h3 style="color: #00CED1; text-align: center; margin-bottom: 2rem;">School Levels</h3>
+                    <div class="levels-grid">
+                        <div class="level-card">
+                            <h4>Secondary Level</h4>
+                            <p>Comprehensive four-year program (Forms 1–4) covering core subjects in sciences, arts, and business. Focuses on foundational knowledge, personal growth, and preparation for national O-level examinations and future academic pathways.</p>
+                        </div>
+                        <div class="level-card">
+                            <h4>Advance Level</h4>
+                            <p>Specialized curriculum for Forms 5 and 6, arts and business combinations. Preparing students for national exams and university entry, with a focus on critical thinking, research skills, and leadership development.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: #00CED1; text-align: center; margin-bottom: 2rem;">Subjects Offered</h3>
+                    <div class="academics-grid">
+                        <div class="subject-card">
+                            <h4>Mathematics</h4>
+                            <p>From basic arithmetic to advanced calculus and statistics</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>English Language & Literature</h4>
+                            <p>Comprehensive language skills and literary analysis</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>Sciences</h4>
+                            <p>Biology, Chemistry, Physics with hands-on laboratory work</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>Social Studies</h4>
+                            <p>History, Geography, Civics, and General Studies</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>Computer Studies</h4>
+                            <p>Basics on web designing and networking, Digital literacy and Technology skills</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>Art</h4>
+                            <p>Creative expression through visual arts with Fine Art subject</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>Physical Education</h4>
+                            <p>Sports, fitness, and health education programs</p>
+                        </div>
+                        <div class="subject-card">
+                            <h4>Foreign Languages</h4>
+                            <p>French, Spanish, Germany and Chinese</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #E0F7FA; padding: 2rem; border-radius: 10px; margin-top: 3rem;">
+                    <h3 style="color: #00CED1; margin-bottom: 1rem;">Curriculum Overview</h3>
+                    <p>Our curriculum is designed to meet international standards while incorporating local cultural values. We follow a balanced approach that combines traditional teaching methods with modern educational technology.</p>
+                    <ul style="margin-top: 1rem; padding-left: 2rem;">
+                        <li>Regular assessments and progress monitoring</li>
+                        <li>Individual learning plans for each student</li>
+                        <li>Focus on critical thinking and problem-solving skills</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admission Section -->
+        <section id="admission" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Admission Process</h2>
+                    <p class="section-subtitle">Join our community of learners and achievers</p>
+                </div>
+
+                <div class="admission-process">
+                    <h3 style="color: #00CED1; margin-bottom: 2rem;">Step-by-Step Admission Process</h3>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Application Submission</h4>
+                            <p>Complete and submit the admission application form along with required documents. Applications can be submitted online or in person at our admissions office.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Document Review</h4>
+                            <p>Our admissions team will review all submitted documents and verify the information provided. This process typically takes 3-5 business days.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Assessment Test</h4>
+                            <p>Students will take an age-appropriate assessment test to evaluate their current academic level and learning needs.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Interview</h4>
+                            <p>A brief interview with the student and parents/guardians to discuss expectations, goals, and school policies.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Admission Decision</h4>
+                            <p>Admission decision will be communicated within one week of completing all requirements. Successful applicants will receive enrollment instructions.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Enrollment</h4>
+                            <p>Complete the enrollment process by paying fees, submitting additional forms, and attending the orientation session.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="requirements">
+                    <h3>Requirements for New Students</h3>
+                    <ul>
+                        <li>Completed admission application form</li>
+                        <li>Birth certificate or passport copy</li>
+                        <li>Previous school transcripts and report cards</li>
+                        <li>Medical records and immunization certificates</li>
+                        <li>Two recent passport-sized photographs</li>
+                        <li>Parent/guardian identification documents</li>
+                        <li>Proof of residence (utility bill or lease agreement)</li>
+                        <li>Transfer certificate from previous school (if applicable)</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <h3 style="color: #00CED1; margin-bottom: 1rem;">Download joining instruction</h3>
+                    <p style="margin-bottom: 2rem;">Click the button below to download our joining instruction form</p>
+                    <a href="Joining Instruction" download="TIMETABLE 1&2.xlsx" class="btn" onclick="alert('Joining Instruction downloaded Successfully')">Download Joining Instruction</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Students Section -->
+        <section id="students" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Student Life</h2>
+                    <p class="section-subtitle">Celebrating achievements and fostering growth</p>
+                </div>
+
+                <div class="achievements">
+                    <h3 style="color: #00CED1; margin-bottom: 2rem;">Student Achievements</h3>
+                    <div class="achievement-grid">
+                        <div class="achievement-card">
+                            <h4>Academic Excellence</h4>
+                            <p>95% of our students achieve above-average grades in national examinations</p>
+                        </div>
+                        <div class="achievement-card">
+                            <h4>Arts & Culture</h4>
+                            <p>Outstanding performances in music, drama, and visual arts</p>
+                        </div>
+                        <div class="achievement-card">
+                            <h4>University Admissions</h4>
+                            <p>98% of graduates gain admission to their preferred universities</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clubs-section">
+                    <h3 style="color: #00CED1; margin-bottom: 2rem;">Clubs & Activities</h3>
+                    <div class="clubs-grid">
+                        <div class="club-card">
+                            <h4>Drama Club</h4>
+                            <p>Theater productions and acting workshops</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Science Club</h4>
+                            <p>Experiments and scientific research projects</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Music Band</h4>
+                            <p>Instrumental and vocal music performances</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Debate Society</h4>
+                            <p>Public speaking and argumentation skills</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Art Club</h4>
+                            <p>Painting, sculpture, and creative arts</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Environmental Club</h4>
+                            <p>Sustainability and conservation projects</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Chess Club</h4>
+                            <p>Strategic thinking and chess tournaments</p>
+                        </div>
+                        <div class="club-card">
+                            <h4>Robotics Club</h4>
+                            <p>Programming and building robots</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: #00CED1; margin-bottom: 2rem;">School Gallery</h3>
+                    <div class="gallery">
+                        <img src="Images/Screenshot.png" alt="Students in classroom">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Science laboratory">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Sports activities">
+                        <img src="/placeholder.svg?height=200&width=300" alt="School library">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Art class">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Graduation ceremony">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact Us</h2>
+                    <p class="section-subtitle">Get in touch with us for any inquiries</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form">
+                        <h3 style="color: #00CED1; margin-bottom: 1.5rem;">Send us a Message</h3>
+                        <form action="https://formsubmit.co/justinelias05@icloud.com" method="POST" id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                                <div class="error" id="nameError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="error" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                                <div class="error" id="phoneError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" required>
+                                <div class="error" id="subjectError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" required placeholder="Please enter your message here..."></textarea>
+                                <div class="error" id="messageError"></div>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <span>info@aquablueacademy.edu</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Address:</strong>
+                            <span>123 Education Street, Learning City, LC 12345</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Office Hours:</strong>
+                            <span>Monday - Friday: 8:00 AM - 5:00 PM</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Admissions:</strong>
+                            <span>admissions@aquablueacademy.edu</span>
+                        </div>
+
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1980.8287815743736!2d39.27861677976227!3d-6.811441146889778!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4ba091c08b8f%3A0x54244891d60e3ff!2sZanaki%20Secondary%20School!5e0!3m2!1sen!2stz!4v1754586677521!5m2!1sen!2stz"
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Zanaki Secondary School. All rights reserved. | Excellence in Education Since 1939</p>
+        </div>
+    </footer>
+
+    <div id="imageModal" style="display:none; position:fixed; z-index:2000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
+        <img id="modalImg" src="" alt="Enlarged" style="max-width:90vw; max-height:90vh; border-radius:10px; box-shadow:0 0 30px #000;">
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Close mobile menu if open
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.remove('show');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('show');
+        }
+
+        // Form validation and submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const name = formData.get('name').trim();
+            const email = formData.get('email').trim();
+            const phone = formData.get('phone').trim();
+            const subject = formData.get('subject').trim();
+            const message = formData.get('message').trim();
+            
+            let isValid = true;
+            
+            // Validate name
+            if (name.length < 2) {
+                showError('nameError', 'Name must be at least 2 characters long');
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            // Validate phone (if provided)
+           if (phone && phone.length > 0) {
+                  const cleanedPhone = phone.replace(/[\s\-\$]/g, '');
+           // Accept: +2556XXXXXXXX, +2557XXXXXXXX, 06XXXXXXXX, or 07XXXXXXXX
+                  const tanzaniaPhoneRegex = /^(?:\+255|0)[67]\d{8}$/;
+                if (!tanzaniaPhoneRegex.test(cleanedPhone)) {
+                 showError('phoneError', 'Please enter a valid Tanzanian phone number (e.g. +255712345678 or 0712345678)');
+                 isValid = false;
+                                  }
+            }
+
+            }
+            
+            // Validate subject
+            if (subject.length < 3) {
+                showError('subjectError', 'Subject must be at least 3 characters long');
+                isValid = false;
+            }
+            
+            // Validate message
+            if (message.length < 10) {
+                showError('messageError', 'Message must be at least 10 characters long');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Simulate form submission
+                alert('Thank you for your message! We will get back to you within 24 hours.');
+                event.target.reset();
+            }
+        
+        
+        function showError(elementId, message) {
+            document.getElementById(elementId).textContent = message;
+        }
+        
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(element => {
+                element.textContent = '';
+            });
+        }
+
+        // Smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const navMenu = document.getElementById('nav-menu');
+                const mobileMenuBtn = document.querySelector('.mobile-menu');
+                
+                if (!navMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Add loading animation for images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+            });
+        });
+
+        // Enhanced touch support
+        document.addEventListener('DOMContentLoaded', function() {
+            // Improve touch targets for mobile
+            const buttons = document.querySelectorAll('.btn, .nav-link, .mobile-menu');
+            buttons.forEach(button => {
+                button.style.minHeight = '44px'; // iOS recommended touch target
+                button.style.minWidth = '44px';
+            });
+
+            // Add touch feedback
+            const touchElements = document.querySelectorAll('.btn, .nav-link, .card, .welcome-card, .subject-card');
+            touchElements.forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+
+        // Image modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryImages = document.querySelectorAll('.gallery img');
+            const imageModal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    const imgSrc = this.src;
+                    modalImg.src = imgSrc.replace(/\.svg\?height=\d+&width=\d+/, '.jpg'); // Change to .jpg
+                    imageModal.style.display = 'flex';
+                });
+            });
+
+            imageModal.addEventListener('click', function() {
+                this.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
